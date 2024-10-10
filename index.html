@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Restaurant Picker</title>
+    <style>
+        body {
+            background-color: #b38b03;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 100px;
+        }
+        h1 {
+            color: black;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>What shall the brussels sprouts have for dinner today?</h1>
+    <button onclick="getRandomRestaurant()">Click me!</button>
+    <div id="result"></div>
+
+    <script>
+        function getRandomRestaurant() {
+            fetch('/get_random_restaurant')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerHTML = "How about: " + data.restaurant + "?";
+                });
+        }
+    </script>
+</body>
+</html>
