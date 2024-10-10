@@ -57,7 +57,7 @@
             if (restaurants.length > 0) {
                 const randomIndex = Math.floor(Math.random() * restaurants.length);
                 const randomRestaurant = restaurants[randomIndex];
-                document.getElementById('result').innerHTML = "How about: " + randomRestaurant + "?";
+                document.getElementById('result').innerHTML = "How about " + randomRestaurant;
             } else {
                 document.getElementById('result').innerHTML = "No restaurants found!";
             }
