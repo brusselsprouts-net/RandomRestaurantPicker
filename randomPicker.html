@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Restaurant Picker</title>
+    <style>
+        body {
+            background-color: #b38b03;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 100px;
+        }
+        h1 {
+            color: black;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>What shall we have for dinner today?</h1>
+    <button onclick="getRandomRestaurant()">Click me!</button>
+    <div id="result"></div>
+    <footer>Made by Ana Dias</footer>
+
+    <script>
+        let restaurants = [];
+
+        // Fetch the restaurants.txt file and process it
+        fetch('restaurants.txt')
+            .then(response => response.text())
+            .then(data => {
+                // Split the file contents into an array of restaurants
+                restaurants = data.split('\n').filter(line => line.trim() !== '');
+            })
+            .catch(error => {
+                console.error('Error loading restaurants:', error);
+                document.getElementById('result').innerHTML = "Could not load restaurants.";
+            });
+
+        // Function to choose a random restaurant
+        function getRandomRestaurant() {
+            if (restaurants.length > 0) {
+                const randomIndex = Math.floor(Math.random() * restaurants.length);
+                const randomRestaurant = restaurants[randomIndex];
+                document.getElementById('result').innerHTML = "How about: " + randomRestaurant + "?";
+            } else {
+                document.getElementById('result').innerHTML = "No restaurants found!";
+            }
+        }
+    </script>
+</body>
+</html>
